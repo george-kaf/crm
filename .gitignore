@@ -1,0 +1,13 @@
+/venv
+**/__pycache__/
+/.mypy_cache
+*.egg-info/
+/build
+/test
+.ipynb-checkpoints
+/.vscode
+/.DS_STORE
+/reports
+/.pylintrc
+/scraped_data.txt
+/scraped_links.txt

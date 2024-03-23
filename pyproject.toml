@@ -1,0 +1,104 @@
+# Script to build python scraper and properties for code linters
+
+[build-system]
+requires = ["setuptools>=42", "wheel", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "todo-george"
+description = "Todo app with django"
+dynamic = ["version"]
+readme = "README.md"
+authors = [
+    { name = "george"},
+    ]
+keywords = ["python", "package"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: 0S Independent",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "Flake8-pyproject",
+    "pre-commit",
+    "pre-commit-hooks",
+    "pytest",
+]
+
+[tool.setuptools-packages.find] 
+exclude = ["tests*", "testing.*"]
+
+[tool.setuptools_scm]
+# This tells setuptools_scm to generate the version from Git tags
+# Optionally, you can configure it further, for example, to write the version to a file
+
+[tool.black]
+line-length = 119
+
+[tool.flake8]
+max-line-length = 119
+exclude = [
+    # No need to traverse our git directory
+    ".git",
+    # There's no value in checking cache directories
+    "__pycache__"
+]
+extend-ignore = [
+    "TYP101",
+    "E122",
+    "E126",
+    "E127",
+    "E131",
+    "E203"
+]
+
+[tool.isort]
+profile = "black"
+known_third_party = []
+
+[tool.mypy]
+plugins = ["pydantic.mypy",]
+ignore_missing_imports = true 
+disallow_any_unimported = false
+disallow_any_expr = false
+disallow_any_decorated = false 
+disallow_any_explicit = false
+disallow_any_generics = true
+disallow_subclassing_any = false
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = false
+no_implicit_optional = true
+strict_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_return_any = true
+warn_unreachable = true
+allow_untyped_globals = false
+allow_redefinition = false
+implicit_reexport = true
+strict_equality = true
+junit_xml = "reports/mypy/TESTS-mypy-xml"
+warn_unused_configs = true
+
+[[tool.mypy-overrides]]
+module = "mypy-tasks.*"
+ignore_errors = true 
+
+[tool-pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
+
+[tool.pytest.ini_options]
+addopts = "-vv --exitfirst --verbose --junitxml=reports/pytest/TESTS-pytest.xml"
+junit_family = "xunit2"
+
+[tool.coverage-report]
+fail_under = 0
