@@ -5,8 +5,8 @@ requires = ["setuptools>=42", "wheel", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "todo-george"
-description = "Todo app with django"
+name = "crm"
+description = "Crm app with django"
 dynamic = ["version"]
 readme = "README.md"
 authors = [
@@ -29,6 +29,10 @@ dev = [
 
 [tool.setuptools-packages.find] 
 exclude = ["tests*", "testing.*"]
+include = ["dev"]
+
+[tool.setuptools]
+py-modules = []
 
 [tool.setuptools_scm]
 # This tells setuptools_scm to generate the version from Git tags
