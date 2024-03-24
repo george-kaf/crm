@@ -14,3 +14,9 @@ body {
 #orders-pending {
     background-color: #7CD1C0;
 }
+
+#logo {
+    width: 8%;
+    height: auto;
+    margin: 0 2% 0 1%;
+}
